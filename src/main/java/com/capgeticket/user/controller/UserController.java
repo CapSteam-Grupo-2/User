@@ -2,6 +2,7 @@ package com.capgeticket.user.controller;
 
 import com.capgeticket.user.converter.UserConverter;
 import com.capgeticket.user.model.User;
+import com.capgeticket.user.response.UserResponse;
 import com.capgeticket.user.service.UserService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,8 @@ public class UserController {
     private UserConverter converter;
 
     @PostMapping("/add")
-    public ResponseEntity<User> addUser(@Valid @RequestBody User user) {
-        return service.addUser(user).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
+    public ResponseEntity<UserResponse> addUser(@Valid @RequestBody User user) {
+        return service.addUser(user).map(value -> ResponseEntity.ok(converter.of(value))).orElseGet(() ->
+                ResponseEntity.badRequest().build());
     }
 }
