@@ -1,8 +1,9 @@
 package com.capgeticket.user.service;
 
 import com.capgeticket.user.model.User;
+import java.util.Optional;
 
 public interface UserService {
-    User addUser(User user);
+    Optional<User> addUser (User user);
 
 }

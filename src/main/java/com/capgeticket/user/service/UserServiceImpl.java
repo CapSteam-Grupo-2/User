@@ -2,6 +2,7 @@ package com.capgeticket.user.service;
 
 import com.capgeticket.user.model.User;
 import com.capgeticket.user.repository.UserRepository;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class UserServiceImpl implements UserService {
      * @return el usuario que se añadió
      */
     @Override
-    public User addUser(User user) {
-        return repository.save(user);
+    public Optional<User> addUser(User user) {
+        return repository.existsByMail(user.getMail()) ? Optional.empty() : Optional.of(repository.save(user)) ;
     }
 }
