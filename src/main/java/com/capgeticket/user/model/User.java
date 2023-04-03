@@ -31,13 +31,13 @@ public class User {
     @NotEmpty(message = "El nombre es obligatorio")
     private String name;
     @Column(name = "lastname")
-    @NotEmpty(message = "El nombre es obligatorio")
+    @NotEmpty(message = "El apellido es obligatorio")
     private String lastname;
     @Column(name = "mail")
-    @NotEmpty(message = "El nombre es obligatorio")
+    @NotEmpty(message = "El email es obligatorio")
     private String mail;
     @Column(name = "password")
-    @NotEmpty(message = "El nombre es obligatorio")
+    @NotEmpty(message = "La contraseña es obligatoria")
     private String password;
     @Column(name = "date")
     @CreatedDate
