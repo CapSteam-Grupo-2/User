@@ -13,9 +13,9 @@ public class UserServiceImpl implements UserService {
     private UserRepository repository;
 
     /**
-     * Añadir un nuevo usuario a la base de datos
-     * @param user : el usuario que se va añadir
-     * @return el usuario que se añadió
+     * Introducir un nuevo usuario a la base de datos
+     * @param user : el usuario que se quiere introducir
+     * @return el usuario que se introduce o vacio si ya existia
      */
     @Override
     public Optional<User> addUser(User user) {
