@@ -1,6 +1,7 @@
 package com.capgeticket.user.controller;
 
 import com.capgeticket.user.converter.UserConverter;
+import com.capgeticket.user.errors.BadRequestException;
 import com.capgeticket.user.model.User;
 import com.capgeticket.user.response.UserResponse;
 import com.capgeticket.user.service.UserService;
@@ -24,7 +25,10 @@ public class UserController {
 
     @PostMapping("/add")
     public ResponseEntity<UserResponse> addUser(@Valid @RequestBody User user) {
-        return service.addUser(user).map(value -> ResponseEntity.ok(converter.of(value))).orElseGet(() ->
-                ResponseEntity.badRequest().build());
+        var response = service.addUser(user);
+        if (response.isEmpty()){
+            throw new BadRequestException(user.getMail());
+        }
+        return ResponseEntity.ok(converter.of(response.get()));
     }
 }
