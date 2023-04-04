@@ -23,10 +23,16 @@ public class UserController {
     @Autowired
     private UserConverter converter;
 
+    /**
+     * Guarda un nuevo usuario, validando que los datos que se introducen no están vacios o null
+     *
+     * @param user usuario que se quiere guardar, validando no esta vacio o null
+     * @return un ResponseEntity con el usuario que se ha guardado o error si algo fue mal
+     */
     @PostMapping("/add")
     public ResponseEntity<UserResponse> addUser(@Valid @RequestBody User user) {
         var response = service.addUser(user);
-        if (response.isEmpty()){
+        if (response.isEmpty()) {
             throw new BadRequestException(user.getMail());
         }
         return ResponseEntity.ok(converter.of(response.get()));

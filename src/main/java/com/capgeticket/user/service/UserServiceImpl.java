@@ -14,11 +14,12 @@ public class UserServiceImpl implements UserService {
 
     /**
      * Introducir un nuevo usuario a la base de datos
+     *
      * @param user : el usuario que se quiere introducir
      * @return el usuario que se introduce o vacio si ya existia
      */
     @Override
     public Optional<User> addUser(User user) {
-        return repository.existsByMail(user.getMail()) ? Optional.empty() : Optional.of(repository.save(user)) ;
+        return repository.existsByMail(user.getMail()) ? Optional.empty() : Optional.of(repository.save(user));
     }
 }
