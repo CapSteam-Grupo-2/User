@@ -27,6 +27,7 @@ public class CustomError extends DefaultErrorAttributes {
 
     /**
      * Personaliza los atributos del error que se van a mostrar
+     *
      * @return los atributos que se van a mostrar
      */
     @Override

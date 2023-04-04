@@ -26,7 +26,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<Object> badRequestExceptionHandler(RuntimeException ex, WebRequest request) throws IOException {
-        CustomError error = new CustomError(String.valueOf(new Date()),HttpStatus.CONFLICT.value(),
+        CustomError error = new CustomError(String.valueOf(new Date()), HttpStatus.CONFLICT.value(),
                 HttpStatus.CONFLICT.name(), Collections.singletonList(ex.getMessage()));
         return handleExceptionInternal(ex, error,
                 new HttpHeaders(), HttpStatus.CONFLICT, request);
@@ -39,6 +39,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     /**
      * Personaliza el mensaje de error de MethodArgumentNotValidException
+     *
      * @return un ResponseEntity con el mensaje personalizado
      */
     @Override
@@ -61,6 +62,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     /**
      * Personaliza el mensaje de error de HttpRequestMethodNotSupportedException
+     *
      * @return un ResponseEntity con el mensaje personalizado
      */
     @Override
