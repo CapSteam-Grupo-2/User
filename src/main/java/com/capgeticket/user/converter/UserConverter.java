@@ -5,10 +5,13 @@ import java.util.stream.Collectors;
 
 import com.capgeticket.user.model.User;
 import com.capgeticket.user.response.UserResponse;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 /*
  * Se utiliza para convertir de entity a DTO
  */
+@Component
 public class UserConverter {
 
 	public UserResponse of(User user) {
