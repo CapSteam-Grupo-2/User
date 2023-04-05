@@ -5,6 +5,9 @@ import com.capgeticket.user.errors.BadRequestException;
 import com.capgeticket.user.model.User;
 import com.capgeticket.user.response.UserResponse;
 import com.capgeticket.user.service.UserService;
+
+import java.util.Optional;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +34,7 @@ public class UserController {
      */
     @PostMapping("/add")
     public ResponseEntity<UserResponse> addUser(@Valid @RequestBody User user) {
-        var response = service.addUser(user);
+        Optional<User> response = service.addUser(user);
         if (response.isEmpty()) {
             throw new BadRequestException(user.getMail());
         }
