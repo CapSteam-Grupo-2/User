@@ -7,4 +7,8 @@ public class BadRequestException extends RuntimeException {
     public BadRequestException(String email) {
         super("Ya existe un usuario con el email: " + email);
     }
+
+    public BadRequestException() {
+        super("Revisa los datos, no son correctos");
+    }
 }

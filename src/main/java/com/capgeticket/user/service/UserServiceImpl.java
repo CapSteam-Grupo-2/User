@@ -1,7 +1,11 @@
 package com.capgeticket.user.service;
 
+import com.capgeticket.user.converter.UserConverter;
+import com.capgeticket.user.errors.BadRequestException;
 import com.capgeticket.user.model.User;
 import com.capgeticket.user.repository.UserRepository;
+import com.capgeticket.user.response.UserResponse;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +16,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository repository;
 
+    @Autowired
+    private UserConverter converter;
+
     /**
      * Introducir un nuevo usuario a la base de datos
      *
@@ -19,7 +26,35 @@ public class UserServiceImpl implements UserService {
      * @return el usuario que se introduce o vacio si ya existia
      */
     @Override
-    public Optional<User> addUser(User user) {
-        return repository.existsByMail(user.getMail()) ? Optional.empty() : Optional.of(repository.save(user));
+    public Optional<UserResponse> addUser(User user) {
+        return repository.existsByMail(user.getMail()) ? Optional.empty() : Optional.of(converter.of(repository.save(user)));
+    }
+
+    @Override
+    public List<UserResponse> getUsers() {
+        return converter.of(repository.findAll());
+    }
+
+    @Override
+    public boolean deleteUser(String id) {
+        if (id == null || id.isBlank()) {
+            return false;
+        }
+        repository.deleteById(Long.valueOf(id));
+        return true;
+    }
+
+    @Override
+    public UserResponse modifUser(User user) {
+        return repository.existsById(user.getId()) ? converter.of(repository.save(user)) : null;
+    }
+
+    @Override
+    public Optional<UserResponse> getById(String id) {
+        if (id == null || id.isBlank()) {
+            throw new BadRequestException();
+        }
+        return repository.findById(Long.valueOf(id))
+                .map(user -> converter.of(user));
     }
 }
