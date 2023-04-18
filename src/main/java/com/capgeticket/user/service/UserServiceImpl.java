@@ -36,8 +36,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean deleteUser(String id) {
-        if (id == null || id.isBlank()) {
+    public boolean deleteUser(Long id) {
+        if (id == null) {
             return false;
         }
         repository.deleteById(Long.valueOf(id));

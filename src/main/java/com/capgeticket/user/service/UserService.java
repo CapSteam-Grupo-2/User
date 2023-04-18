@@ -10,7 +10,7 @@ public interface UserService {
 
     List<UserResponse> getUsers();
 
-    boolean deleteUser(String id);
+    boolean deleteUser(Long id);
 
     UserResponse modifUser(User user);
 
