@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Optional<User> addUser(User user) {
-        return repository.existsByMail(user.getMail()) ? Optional.empty() : Optional.of(repository.save(user));
+        return repository.existsByMail(user.getEmail()) ? Optional.empty() : Optional.of(repository.save(user));
     }
 
 	@Override

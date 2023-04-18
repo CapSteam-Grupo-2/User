@@ -35,7 +35,7 @@ public class UserControllerTest {
 	private void addData() {
 		user.setName("nameTest");
 		user.setLastname("lastnameTest");
-		user.setMail("emailTest7");
+		user.setEmail("emailTest7");
 		user.setDate("04/04/2023");
 		user.setPassword("PasswordTest");
 	}

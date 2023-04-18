@@ -33,9 +33,9 @@ public class User {
     @Column(name = "lastname")
     @NotEmpty(message = "El apellido es obligatorio")
     private String lastname;
-    @Column(name = "mail")
+    @Column(name = "email")
     @NotEmpty(message = "El email es obligatorio")
-    private String mail;
+    private String email;
     @Column(name = "password")
     @NotEmpty(message = "La contraseña es obligatoria")
     private String password;

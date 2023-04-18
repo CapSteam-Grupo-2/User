@@ -34,7 +34,7 @@ public class UserServiceTest {
     @Test
     public void addUserTest_AlreadyExists() {
         User user = new User(10L, "laura", "lopez", "laulop@", "hshhshs", "12-12-12");
-        Mockito.when(repository.existsByMail(user.getMail())).thenReturn(true);
+        Mockito.when(repository.existsByMail(user.getEmail())).thenReturn(true);
         assertThat(service.addUser(user)).isEqualTo(Optional.empty());
     }
 }
