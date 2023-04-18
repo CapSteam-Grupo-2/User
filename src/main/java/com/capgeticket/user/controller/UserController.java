@@ -96,7 +96,7 @@ public class UserController {
 	 * @return
 	 */
 	@PutMapping(path = { "/{id}" })
-	public ResponseEntity<UserResponse> Update(@PathVariable("id") long id) {
+	public ResponseEntity<UserResponse> updateUser(@PathVariable("id") long id) {
 
 		Optional<User> response = service.findById(id);
 		if (response.isEmpty()) {
