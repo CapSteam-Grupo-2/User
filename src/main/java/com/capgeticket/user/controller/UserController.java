@@ -96,13 +96,12 @@ public class UserController {
 	 * @return
 	 */
 	@PutMapping(path = { "/{id}" })
-	public ResponseEntity<UserResponse> updateUser(@PathVariable("id") long id) {
+	public ResponseEntity<UserResponse> updateUser(@Valid @RequestBody User user) {
 
-		Optional<User> response = service.findById(id);
-		if (response.isEmpty()) {
-			throw new RuntimeException("No existe usuario para el id: " + id);
+		if (user == null) {
+			throw new BadRequestException("Debe introducir un usuario valido");
 		}
-		service.updateUser(response.get());
+		Optional<User> response = service.updateUser(user);
 
 		return ResponseEntity.ok(converter.of(response.get()));
 	}
